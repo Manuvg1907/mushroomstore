@@ -1,0 +1,5 @@
+.hero-section {
+  height: 400px;
+  background: url("https://images.unsplash.com/photo-1600180758890-20d8be406843")
+    center/cover no-repeat;
+}
