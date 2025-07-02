@@ -8,27 +8,52 @@ const categories = [
 ];
 
 const promotions = [
-  { title: "Under ₹99", img: "../images/mushroom_bng.jpeg" },
-  { title: "Best Sellers", img:"../images/mush_type-1.jpeg" },
+  {
+    title: "Under ₹99",
+    img: "/images/mushroom_bng.jpeg"
+  },
+  {
+    title: "Best Sellers",
+    img: "/images/mush_bng.jpeg"
+  },
 ];
-console.log(promotions[1]);
 
-const products = Array.from({ length: 8 }, (_, i) => ({
-  id: i,
-  name: `Mushroom Pack ${i + 1}`,
-  price: `${49 + i * 10}`,
-  img: "../images/mush_type-2.jpeg",
-}));
+const products = [
+  {
+    id: 1, name: "Button Mushroom", price: "49", img: "/images/mush_type-4.jpeg"
+  },
+  {
+    id: 2, name: "Oyster Mushroom", price: "59", img: "/images/mush_type-2.jpeg"
+  },
+  {
+    id: 3, name: "Shiitake Mushroom", price: "69", img: "/images/mush_type-3.jpeg"
+  },
+  {
+    id: 4, name: "Enoki Mushroom", price: "79", img: "/images/mush_logo.jpeg"
+  },
+  {
+    id: 5, name: "King Oyster", price: "89", img: "/images/mush_type-5.jpeg"
+  },
+  {
+    id: 6, name: "Porcini", price: "99", img: "/images/mush_type-6.jpg"
+  },
+  {
+    id: 7, name: "Morel Mushroom", price: "109", img: "/images/mush_type-7.jpg"
+  },
+  {
+    id: 8, name: "Chanterelle", price: "119", img: "/images/mush_type-8.jpg"
+  },
+];
 
 const Home = () => {
   return (
     <>
-      {/* Promos Carousel */}
+      {/* Promotions Carousel */}
       <div id="promoCarousel" className="carousel slide mb-4" data-bs-ride="carousel">
-        <div className="carousel-inner">
+        <div className="carousel-inner rounded overflow-hidden" style={{ maxHeight: "400px" }}>
           {promotions.map((p, i) => (
             <div key={i} className={`carousel-item ${i === 0 ? "active" : ""}`}>
-              <img src={p.img} className="d-block w-100" alt={p.title} />
+              <img src={p.img} className="d-block w-100" alt={p.title} style={{ height: "100%", objectFit: "cover" }} />
             </div>
           ))}
         </div>
@@ -43,26 +68,26 @@ const Home = () => {
       {/* Categories */}
       <div className="d-flex overflow-auto pb-3 mb-4 category-bar">
         {categories.map((cat, i) => (
-          <div key={i} className="category-card animate__animated animate__fadeInUp">
-            <div className="rounded-circle bg-light d-flex align-items-center justify-content-center mb-2">
-              <span className="text-muted">{cat[0]}</span>
+          <div key={i} className="text-center mx-3 animate__animated animate__fadeInUp">
+            <div className="rounded-circle bg-light d-flex align-items-center justify-content-center shadow-sm" style={{ width: 60, height: 60 }}>
+              <span className="text-muted fw-bold">{cat[0]}</span>
             </div>
-            <small>{cat}</small>
+            <small className="d-block mt-2 text-secondary">{cat}</small>
           </div>
         ))}
       </div>
 
-      {/* Product Grid */}
+      {/* Products */}
       <h5 className="mb-3">Fresh Mushrooms</h5>
       <div className="row">
         {products.map(p => (
           <div key={p.id} className="col-6 col-sm-4 col-md-3 mb-4">
-            <div className="card product-card animate__animated animate__zoomIn">
-              <img src={p.img} className="card-img-top" alt={p.name} />
-              <div className="card-body text-center p-2">
-                <h6 className="card-title mb-1">{p.name}</h6>
-                <p className="text-success mb-2">₹{p.price}</p>
-                <button className="btn btn-sm btn-outline-success">Add</button>
+            <div className="card h-100 shadow-lg animate__animated animate__fadeInUp">
+              <img src={p.img} className="card-img-top" alt={p.name} style={{ height: 160, objectFit: "cover" }} />
+              <div className="card-body d-flex flex-column text-center">
+                <h6 className="card-title fw-semibold">{p.name}</h6>
+                <p className="text-success fs-6 mb-2">₹{p.price}</p>
+                <button className="btn btn-sm btn-outline-success mt-auto">Add to Cart</button>
               </div>
             </div>
           </div>
