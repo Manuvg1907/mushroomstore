@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "animate.css/animate.min.css";
 import "../styles/Layout.css";
+import { FaShoppingCart } from "react-icons/fa"; // Cart icon
 
 const Layout = () => {
   return (
@@ -43,7 +44,15 @@ const Layout = () => {
               <li className="nav-item">
                 <Link className="nav-link" to="/feedback">Feedback</Link>
               </li>
+              <li className="nav-item">
+                {/* ✅ Cart icon navigates to /cart */}
+                <Link className="nav-link d-flex align-items-center" to="/cart">
+                  <FaShoppingCart className="me-1" />
+                  Cart
+                </Link>
+              </li>
             </ul>
+
             <form className="d-flex">
               <input
                 className="form-control me-2"
@@ -58,6 +67,8 @@ const Layout = () => {
           </div>
         </div>
       </nav>
+
+      {/* Outlet renders the current page component */}
       <main className="container py-4">
         <Outlet />
       </main>
