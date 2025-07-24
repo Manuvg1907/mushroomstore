@@ -18,7 +18,7 @@ const products = [
 
 const testimonials = [
   { name: "Aarti S.", text: "Fresh and delivered on time!", rating: 5 },
-  { name: "Rahul K.", text: "Best organic mushrooms in town.", rating: 4.8 },
+  { name: "Rahul K.", text: "Best organic mushrooms in town.", rating: 4.9 },
 ];
 
 const facts = [
