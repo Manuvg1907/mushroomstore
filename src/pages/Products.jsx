@@ -1,4 +1,3 @@
-// src/pages/Products.jsx
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -24,19 +23,25 @@ const Products = () => {
   }, [cart]);
 
   const addToCart = (product) => {
-    setCart((prevCart) => [...prevCart, product]);
-    alert(`${product.name} added to cart!`);
+    const existing = cart.find(item => item.id === product.id);
+    if (existing) {
+      const updated = cart.map(item =>
+        item.id === product.id ? { ...item, quantity: (item.quantity || 1) + 1 } : item
+      );
+      setCart(updated);
+    } else {
+      setCart([...cart, { ...product, quantity: 1 }]);
+    }
   };
 
   return (
     <div className="container mt-4 pt-4">
       <h2 className="text-center text-success mb-4">Our Fresh Mushrooms</h2>
-
       {products.map((p) => (
         <div key={p.id} className="card mb-4 shadow-sm">
           <div className="row g-0">
             <div className="col-md-4">
-              <img src={p.img} className="img-fluid rounded-start h-100 object-fit-cover" alt={p.name} />
+              <img src={p.img} className="img-fluid rounded-start" alt={p.name} />
             </div>
             <div className="col-md-8 d-flex flex-column justify-content-center p-3">
               <h5 className="card-title">{p.name}</h5>
@@ -54,4 +59,3 @@ const Products = () => {
 };
 
 export default Products;
-

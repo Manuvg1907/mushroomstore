@@ -1,4 +1,3 @@
-// src/pages/Layout.jsx
 import React from "react";
 import { Link, Outlet } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";

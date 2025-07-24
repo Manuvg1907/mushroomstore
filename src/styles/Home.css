@@ -1,27 +1,198 @@
-.carousel-item img { height: 200px; object-fit: cover; }
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f8f9fa;
+  scroll-behavior: smooth;
+}
 
 .category-bar {
-  scrollbar-width: none;
+  padding: 0 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: #ccc transparent;
 }
-.category-bar::-webkit-scrollbar { display: none; }
 
-.category-card {
-  flex: 0 0 auto;
-  width: 80px;
-  text-align: center;
-  margin-right: 12px;
+.category-bar::-webkit-scrollbar {
+  height: 6px;
 }
-.category-card div {
+.category-bar::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 10px;
+}
+
+.category-bar .rounded-circle {
   width: 60px;
   height: 60px;
+  background: linear-gradient(145deg, #ffffff, #e6e6e6);
+  transition: all 0.3s ease-in-out;
 }
-.product-card {
-  transition: transform 0.2s;
+
+.category-bar .rounded-circle:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
 }
-.product-card:hover {
-  transform: translateY(-5px);
+
+.carousel-inner img {
+  border-radius: 12px;
+  transition: transform 0.4s ease-in-out;
 }
-.product-card img {
-  height: 120px;
-  object-fit: cover;
+
+.carousel-inner img:hover {
+  transform: scale(1.02);
+}
+
+.card {
+  transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+  border-radius: 16px;
+  border: none;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 1rem;
+  color: #333;
+}
+
+.text-success {
+  font-weight: 600;
+}
+
+.btn-outline-success,
+.btn-success,
+.btn-outline-secondary,
+.btn-outline-primary {
+  border-radius: 20px;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-success:hover,
+.btn-success:hover,
+.btn-outline-secondary:hover,
+.btn-outline-primary:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 128, 0, 0.15);
+}
+
+.btn-outline-primary {
+  font-weight: 500;
+}
+
+h5 {
+  font-weight: 600;
+  color: #222;
+}
+
+section {
+  transition: all 0.4s ease-in-out;
+}
+
+section:hover {
+  transform: scale(1.01);
+}
+
+.ratio iframe {
+  border-radius: 12px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* Testimonials / Facts / Extras */
+.testimonial-card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 1rem;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.05);
+  transition: all 0.3s ease-in-out;
+}
+
+.testimonial-card:hover {
+  transform: translateY(-6px);
+  background: #fefefe;
+}
+
+.facts-list li::before {
+  content: '🍄';
+  display: inline-block;
+  margin-right: 8px;
+  font-size: 1.1rem;
+}
+
+/* Icon Styling using React Icons */
+.icon-check {
+  color: #6f42c1;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  animation: pulse 2s infinite;
+}
+
+.icon-heart {
+  color: #e63946;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  animation: beat 1.5s infinite;
+}
+
+.icon-box {
+  color: #f4a261;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  animation: bounce 2s infinite;
+}
+
+.icon-bulb {
+  color: #ffb703;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  animation: flicker 3s infinite;
+}
+
+.icon-camera {
+  color: #118ab2;
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+  animation: fadeIn 2s ease-in-out infinite alternate;
+}
+
+.icon-star {
+  color: #ffbe0b;
+  font-size: 1.1rem;
+  margin-right: 0.3rem;
+  animation: sparkle 2.5s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes beat {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+    opacity: 1;
+  }
+  20%, 24%, 55% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes sparkle {
+  0% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.2); }
+  100% { opacity: 0.8; transform: scale(1); }
 }

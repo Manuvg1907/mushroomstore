@@ -1,4 +1,3 @@
-// src/pages/Cart.jsx
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -40,7 +39,7 @@ const Cart = () => {
   };
 
   const total = cart.reduce(
-    (acc, item) => acc + parseFloat(item.price) * (item.quantity || 1),
+    (acc, item) => acc + (Number(item.price) || 0) * (item.quantity || 1),
     0
   );
 
@@ -97,9 +96,7 @@ const Cart = () => {
 
           <div className="d-flex justify-content-between align-items-center border-top pt-3">
             <h4 className="text-success">Total: ₹{total.toFixed(2)}</h4>
-            <Link to="/checkout" className="btn btn-lg btn-success px-4 shadow">
-              Proceed to Checkout
-            </Link>
+            <Link to="/checkout" className="btn btn-success mt-3">Proceed to Checkout</Link>
           </div>
         </>
       )}
