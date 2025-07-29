@@ -27,7 +27,7 @@ const Products = () => {
     const existing = cart.find(item => item.id === product.id);
     if (existing) {
       const updated = cart.map(item =>
-        item.id === product.id ? { ...item, quantity: (item.quantity || 1) + 1 } : item
+        item.id === product.id ? { ...item, quantity: item.quantity + 1 } : item
       );
       setCart(updated);
     } else {
@@ -35,13 +35,34 @@ const Products = () => {
     }
   };
 
+  const increment = (productId) => {
+    const updated = cart.map(item =>
+      item.id === productId ? { ...item, quantity: item.quantity + 1 } : item
+    );
+    setCart(updated);
+  };
+
+  const decrement = (productId) => {
+    const updated = cart
+      .map(item =>
+        item.id === productId ? { ...item, quantity: item.quantity - 1 } : item
+      )
+      .filter(item => item.quantity > 0); // Remove item if quantity becomes 0
+    setCart(updated);
+  };
+
+  const getProductQuantity = (productId) => {
+    const product = cart.find(item => item.id === productId);
+    return product ? product.quantity : 0;
+  };
+
   const getTotalItems = () => {
-    return cart.reduce((total, item) => total + (item.quantity || 1), 0);
+    return cart.reduce((total, item) => total + item.quantity, 0);
   };
 
   return (
     <div className="container mt-4 pt-4">
-      {/* 🛒 Cart Icon with count */}
+      {/* 🛒 Cart Icon */}
       <div className="position-fixed top-0 end-0 m-4 z-3">
         <div className="position-relative">
           <FaShoppingCart size={28} className="text-success" />
@@ -52,26 +73,50 @@ const Products = () => {
       </div>
 
       <h2 className="text-center text-success mb-4">Our Fresh Mushrooms</h2>
-      {products.map((p) => (
-        <div key={p.id} className="card mb-4 shadow-sm">
-          <div className="row g-0">
-            <div className="col-md-4">
-              <img src={p.img} className="img-fluid rounded-start" alt={p.name} />
-            </div>
-            <div className="col-md-8 d-flex flex-column justify-content-center p-3">
-              <h5 className="card-title">{p.name}</h5>
-              <p className="card-text text-muted">{p.desc}</p>
-              <h6 className="text-success">Price: ₹{p.price}</h6>
-              <button className="btn btn-outline-success btn-sm mt-2" onClick={() => addToCart(p)}>
-                Add to Cart
-              </button>
+      {products.map((p) => {
+        const quantity = getProductQuantity(p.id);
+        return (
+          <div key={p.id} className="card mb-4 shadow-sm">
+            <div className="row g-0">
+              <div className="col-md-4">
+                <img src={p.img} className="img-fluid rounded-start" alt={p.name} />
+              </div>
+              <div className="col-md-8 d-flex flex-column justify-content-center p-3">
+                <h5 className="card-title">{p.name}</h5>
+                <p className="card-text text-muted">{p.desc}</p>
+                <h6 className="text-success">Price: ₹{p.price}</h6>
+
+                {quantity > 0 ? (
+                  <div className="d-flex align-items-center mt-2">
+                    <button
+                      className="btn btn-outline-danger btn-sm me-2"
+                      onClick={() => decrement(p.id)}
+                    >
+                      −
+                    </button>
+                    <span>{quantity}</span>
+                    <button
+                      className="btn btn-outline-success btn-sm ms-2"
+                      onClick={() => increment(p.id)}
+                    >
+                      +
+                    </button>
+                  </div>
+                ) : (
+                  <button
+                    className="btn btn-outline-success btn-sm mt-2"
+                    onClick={() => addToCart(p)}
+                  >
+                    Add to Cart
+                  </button>
+                )}
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 };
 
 export default Products;
-
