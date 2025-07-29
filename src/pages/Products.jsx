@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { FaShoppingCart } from "react-icons/fa";
 
 const products = [
   { id: 1, name: "Button Mushroom", price: 49, img: "/images/mush_type-4.jpeg", desc: "Mild flavor, great for salads and stir-fries." },
@@ -34,8 +35,22 @@ const Products = () => {
     }
   };
 
+  const getTotalItems = () => {
+    return cart.reduce((total, item) => total + (item.quantity || 1), 0);
+  };
+
   return (
     <div className="container mt-4 pt-4">
+      {/* 🛒 Cart Icon with count */}
+      <div className="position-fixed top-0 end-0 m-4 z-3">
+        <div className="position-relative">
+          <FaShoppingCart size={28} className="text-success" />
+          <span className="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+            {getTotalItems()}
+          </span>
+        </div>
+      </div>
+
       <h2 className="text-center text-success mb-4">Our Fresh Mushrooms</h2>
       {products.map((p) => (
         <div key={p.id} className="card mb-4 shadow-sm">
@@ -59,3 +74,4 @@ const Products = () => {
 };
 
 export default Products;
+
