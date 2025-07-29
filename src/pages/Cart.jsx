@@ -5,14 +5,25 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const Cart = () => {
   const [cart, setCart] = useState([]);
 
+  // Load cart from localStorage on component mount
   useEffect(() => {
     const storedCart = localStorage.getItem("cart");
-    setCart(storedCart ? JSON.parse(storedCart) : []);
+    const parsedCart = storedCart ? JSON.parse(storedCart) : [];
+    setCart(parsedCart);
+    updateCartCountBadge(parsedCart);
   }, []);
 
   const updateCartStorage = (updatedCart) => {
     setCart(updatedCart);
     localStorage.setItem("cart", JSON.stringify(updatedCart));
+    updateCartCountBadge(updatedCart); // Update count on changes
+  };
+
+  // Utility to update global cart count badge in DOM
+  const updateCartCountBadge = (items) => {
+    const count = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
+    const badge = document.getElementById("cart-count");
+    if (badge) badge.textContent = count;
   };
 
   const removeFromCart = (id) => {
@@ -105,3 +116,4 @@ const Cart = () => {
 };
 
 export default Cart;
+
