@@ -4,15 +4,39 @@
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#000000" />
+    <meta name="theme-color" content="#5f0f40" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Buy fresh, affordable mushrooms online. Fast delivery and quality guaranteed from Mushroom Store."
     />
+    <meta name="keywords" content="mushrooms, online store, organic, fresh vegetables, ecommerce" />
+    <meta name="author" content="Mushroom Store Team" />
+
+    <!-- Open Graph for social sharing -->
+    <meta property="og:title" content="Mushroom Store" />
+    <meta
+      property="og:description"
+      content="Fresh, locally sourced mushrooms at fair prices. Delivered to your door."
+    />
+    <meta property="og:image" content="%PUBLIC_URL%/preview.jpg" />
+    <meta property="og:url" content="https://yourdomain.com" />
+    <meta property="og:type" content="website" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Mushroom Store" />
+    <meta
+      name="twitter:description"
+      content="Buy mushrooms online at fair prices. Fast delivery. Easy checkout."
+    />
+    <meta name="twitter:image" content="%PUBLIC_URL%/preview.jpg" />
+
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <title>React App</title>
-    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <title>Mushroom Store | Fresh, Affordable Mushrooms Online</title>
+
+    <!-- Razorpay Script -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 
     <!-- Font Awesome for cart icon -->
     <link
@@ -23,7 +47,7 @@
       referrerpolicy="no-referrer"
     />
 
-    <!-- Cart icon styles -->
+    <!-- Cart Icon Styles -->
     <style>
       .cart-icon {
         position: fixed;
@@ -32,6 +56,13 @@
         font-size: 24px;
         color: #000;
         z-index: 9999;
+        cursor: pointer;
+        transition: transform 0.3s ease, color 0.3s ease;
+      }
+
+      .cart-icon:hover {
+        transform: scale(1.1);
+        color: #5f0f40;
       }
 
       .cart-count {
@@ -50,14 +81,13 @@
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
 
-    <!-- Cart icon placeholder with count -->
-    <div class="cart-icon" id="cart-placeholder">
-      <i class="fas fa-shopping-cart"></i>
+    <!-- Cart Icon with Count -->
+    <div class="cart-icon" id="cart-placeholder" aria-label="Shopping cart">
+      <i class="fas fa-shopping-cart" aria-hidden="true"></i>
       <span class="cart-count" id="cart-count">0</span>
     </div>
 
-    <!-- React root -->
+    <!-- React Mount Point -->
     <div id="root"></div>
   </body>
 </html>
-
