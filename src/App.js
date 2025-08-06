@@ -1,4 +1,8 @@
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Layout from "./pages/Layout";
 import Home from "./pages/Home";
 import Cart from "./pages/Cart";
@@ -20,11 +24,14 @@ const App = () => {
           <Route path="checkout" element={<Checkout />} />
         </Route>
       </Routes>
+      {/* ✅ Toast notifications for entire app */}
+      <ToastContainer position="top-right" autoClose={3000} />
     </Router>
   );
 };
 
 export default App;
+
 
 
 
